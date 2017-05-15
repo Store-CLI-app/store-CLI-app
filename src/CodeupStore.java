@@ -8,14 +8,10 @@ import java.util.Scanner;
 public class CodeupStore {
     public static void main(String[] args) {
         System.out.println("Welcome to the Codeup store! ");
-        System.out.println("Please select an option:\n1.Sale\n2.Print receipt\n3.Exit ");
-        Scanner sc = new Scanner(System.in);
-        String userSelection = sc.nextLine();
-        System.out.println(userSelection);
-        Sale();
+        menu();
     }
 
-    public static String itemName() {
+    public static String nameOfTheItem() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the item's name? ");
@@ -25,31 +21,52 @@ public class CodeupStore {
     }
 
 
-    public static Integer quantity() {
+    public static int numberOfItemsSelected() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("How many would you like? ");
-        String quantity = sc.next();
+        int quantity = sc.nextInt();
         System.out.println(quantity);
-        return quantity();
+        return quantity;
     }
 
-    public static Double price() {
+    public static String priceOfTheItemsSelected() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the price? ");
-        double price = sc.nextDouble();
+        String price = String.format("%.2f", sc.nextDouble());
         System.out.println(price);
-        return price();
+        return price;
     }
 
+    public static String sale() {
+        String userSelection =  numberOfItemsSelected() + " || " + nameOfTheItem() + " || $" + String.format("%.2f", priceOfTheItemsSelected());
+        System.out.println(userSelection);
+        return userSelection;
+    }
 
+    public static int menu() {
+        System.out.println("Please select a number:\n1.Sale\n2.Print receipt\n3.Exit ");
+        Scanner sc = new Scanner(System.in);
+        int userSelection = sc.nextInt();
+        System.out.println(userSelection);
+        String yesNo = "Y";
+
+        if(userSelection == 1)
+            do {
+                nameOfTheItem();
+                numberOfItemsSelected();
+                priceOfTheItemsSelected();
+                System.out.println("Would you like to enter another item? Choose Y/N: ");
+                yesNo = sc.next();
+                System.out.println();
+            }
+            while (!yesNo.equalsIgnoreCase("N"));
+        return menu();
+
+    }
 
 
 }
 
-//
-//
-//    String userSelection =  quantity + " || " + itemName + " || $" + String.format("%.2f", price);
-//        System.out.println(userSelection);
-//                return userSelection;
+
