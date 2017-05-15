@@ -39,8 +39,8 @@ public class CodeupStore {
         return price;
     }
 
-    public static String sale() {
-        String userSelection =  numberOfItemsSelected() + " || " + nameOfTheItem() + " || $" + String.format("%.2f", priceOfTheItemsSelected());
+    public static String receipt(String name, int quantity, String price) {
+        String userSelection =  name + " || " + quantity + " || " + price;
         System.out.println(userSelection);
         return userSelection;
     }
@@ -50,22 +50,28 @@ public class CodeupStore {
         Scanner sc = new Scanner(System.in);
         int userSelection = sc.nextInt();
         System.out.println(userSelection);
-        String yesNo = "Y";
+        String yesNo;
 
-        if(userSelection == 1)
+        String name = "";
+        int quantity = 0;
+        String price = "";
+
+        if (userSelection == 1) {
             do {
-                nameOfTheItem();
-                numberOfItemsSelected();
-                priceOfTheItemsSelected();
+                name = nameOfTheItem();
+                quantity = numberOfItemsSelected();
+                price = priceOfTheItemsSelected();
                 System.out.println("Would you like to enter another item? Choose Y/N: ");
                 yesNo = sc.next();
                 System.out.println();
             }
             while (!yesNo.equalsIgnoreCase("N"));
-        return menu();
-
+            return menu();
+        } else if (userSelection == 2) {
+            receipt(name, quantity, price);
+        }
+        return userSelection;
     }
-
 
 }
 
