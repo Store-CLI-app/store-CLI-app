@@ -15,27 +15,41 @@ public class CodeupStore {
         Sale();
     }
 
-    public static String Sale() {
+    public static String itemName() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the item's name? ");
         String itemName = sc.next();
         System.out.println(itemName);
+        return itemName;
+    }
+
+
+    public static Integer quantity() {
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("How many would you like? ");
         String quantity = sc.next();
         System.out.println(quantity);
+        return quantity();
+    }
+
+    public static Double price() {
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the price? ");
         double price = sc.nextDouble();
         System.out.println(price);
-
-        String userSelection =  quantity + " || " + itemName + " || $" + String.format("%.2f", price);
-        System.out.println(userSelection);
-        return userSelection;
+        return price();
     }
 
 
 
 
 }
+
+//
+//
+//    String userSelection =  quantity + " || " + itemName + " || $" + String.format("%.2f", price);
+//        System.out.println(userSelection);
+//                return userSelection;
