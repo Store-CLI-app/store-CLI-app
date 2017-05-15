@@ -19,17 +19,18 @@ public class CodeupStore {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the item's name? ");
-        String userSelection = sc.nextLine();
-        System.out.println(userSelection);
+        String itemName = sc.nextLine();
+        System.out.println(itemName);
 
         System.out.println("How many would you like? ");
-        userSelection += sc.nextLine();
-        System.out.println(userSelection);
+        String quantity = sc.nextLine();
+        System.out.println(quantity);
 
         System.out.println("What is the price? ");
-        userSelection += sc.nextLine();
-        System.out.println(userSelection);
+        double price = sc.nextDouble();
+        System.out.println(price);
 
+        System.out.println(quantity + " || " + itemName + " || $" + price);
         return userSelection;
     }
 
