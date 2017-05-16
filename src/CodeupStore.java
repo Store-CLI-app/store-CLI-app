@@ -9,7 +9,8 @@ public class CodeupStore {
     public static void main(String[] args) {
         System.out.println("Welcome to the Codeup store! ");
         String receipt = "";
-        menu(receipt);
+        double total = 0;
+        menu(receipt, total);
     }
 
     public static String nameOfTheItem() {
@@ -31,11 +32,12 @@ public class CodeupStore {
         return quantity;
     }
 
-    public static String priceOfTheItemsSelected() {
+    public static double priceOfTheItemsSelected() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the price? ");
-        String price = String.format("%.2f", sc.nextDouble());
+//        String price = String.format("%.2f", sc.nextDouble());
+        double price = sc.nextDouble();
         System.out.println(price);
         return price;
     }
@@ -46,7 +48,7 @@ public class CodeupStore {
 //        return userSelection;
 //    }
 
-    public static String menu(String receipt) {
+    public static String menu(String receipt, double total) {
         System.out.println("Please select a number:\n1.Sale\n2.Print receipt\n3.Exit ");
         Scanner sc = new Scanner(System.in);
         int userSelection = sc.nextInt();
@@ -61,20 +63,26 @@ public class CodeupStore {
             do {
                 String name = nameOfTheItem();
                 int quantity = numberOfItemsSelected();
-                String price = priceOfTheItemsSelected();
+                double price = priceOfTheItemsSelected();
 
-                receipt += "\n" + name + " || " + quantity + " || " + price;
+                receipt += "\n" + name + " || " + quantity + " || $" +  String.format("%.2f", price) + " each";
 /* System.out.println(receipt); */
+
+                total += quantity * price;
+
 
                 System.out.println("Would you like to enter another item? Choose Y/N: ");
                 yesNo = sc.next();
                 System.out.println();
             }
             while (!yesNo.equalsIgnoreCase("N"));
-            menu(receipt);
+            menu(receipt, total);
                 return receipt;
         } else if (userSelection == 2) {
+            System.out.println("-------------------------------");
+            System.out.println("Thank you for your business");
             System.out.println(receipt);
+            System.out.println("total: $1" + String.format("%.2f", total));
         }
         return receipt;
     }
