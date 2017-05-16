@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class CodeupStore {
     public static void main(String[] args) {
         System.out.println("Welcome to the Codeup store! ");
-        menu();
+        String receipt = "";
+        menu(receipt);
     }
 
     public static String nameOfTheItem() {
@@ -39,38 +40,43 @@ public class CodeupStore {
         return price;
     }
 
-    public static String receipt(String name, int quantity, String price) {
-        String userSelection =  name + " || " + quantity + " || " + price;
-        System.out.println(userSelection);
-        return userSelection;
-    }
+//    public static String receipt(String name, int quantity, String price) {
+//        String userSelection =  name + " || " + quantity + " || " + price;
+//        System.out.println(userSelection);
+//        return userSelection;
+//    }
 
-    public static int menu() {
+    public static String menu(String receipt) {
         System.out.println("Please select a number:\n1.Sale\n2.Print receipt\n3.Exit ");
         Scanner sc = new Scanner(System.in);
         int userSelection = sc.nextInt();
         System.out.println(userSelection);
         String yesNo;
 
-        String name = "";
-        int quantity = 0;
-        String price = "";
+//        String name = sc.nextLine();
+//        int quantity = sc.nextInt();
+//        String price = sc.nextLine();
 
         if (userSelection == 1) {
             do {
-                name = nameOfTheItem();
-                quantity = numberOfItemsSelected();
-                price = priceOfTheItemsSelected();
+                String name = nameOfTheItem();
+                int quantity = numberOfItemsSelected();
+                String price = priceOfTheItemsSelected();
+
+                receipt += "\n" + name + " || " + quantity + " || " + price;
+/* System.out.println(receipt); */
+
                 System.out.println("Would you like to enter another item? Choose Y/N: ");
                 yesNo = sc.next();
                 System.out.println();
             }
             while (!yesNo.equalsIgnoreCase("N"));
-            return menu();
+            menu(receipt);
+                return receipt;
         } else if (userSelection == 2) {
-            receipt(name, quantity, price);
+            System.out.println(receipt);
         }
-        return userSelection;
+        return receipt;
     }
 
 }
