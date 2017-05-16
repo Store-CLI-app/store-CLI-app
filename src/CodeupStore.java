@@ -83,6 +83,7 @@ public class CodeupStore {
             System.out.println("Thank you for your business");
             System.out.println(receipt);
             System.out.println("total: $1" + String.format("%.2f", total));
+            menu(receipt, total);
         }
         return receipt;
     }
