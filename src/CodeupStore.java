@@ -65,7 +65,7 @@ public class CodeupStore {
                 int quantity = numberOfItemsSelected();
                 double price = priceOfTheItemsSelected();
 
-                receipt += "\n" + name + " || " + quantity + " || $" +  String.format("%.2f", price) + " each";
+                receipt += "\n" + name + " || " + quantity + " || $" + String.format("%.2f", price) + " each";
 /* System.out.println(receipt); */
 
                 total += quantity * price;
@@ -77,12 +77,21 @@ public class CodeupStore {
             }
             while (!yesNo.equalsIgnoreCase("N"));
             menu(receipt, total);
-                return receipt;
         } else if (userSelection == 2) {
-            System.out.println("-------------------------------");
-            System.out.println("Thank you for your business");
-            System.out.println(receipt);
-            System.out.println("total: $1" + String.format("%.2f", total));
+            do {
+                System.out.println("-------------------------------");
+                System.out.println("Thank you for your business");
+                System.out.println(receipt);
+                System.out.println("--------------------");
+                System.out.println("total: $" + String.format("%.2f", total));
+                System.out.println("");
+//                menu(receipt, total);
+
+                System.out.println("Would you like to return to the menu? Choose Y/N: ");
+                yesNo = sc.next();
+                System.out.println();
+            }
+            while (!yesNo.equalsIgnoreCase("Y")) ;
             menu(receipt, total);
         }
         return receipt;
